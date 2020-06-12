@@ -1,10 +1,10 @@
 # import xml.etree.ElementTree as ET
 import lxml.etree as ET
-import HTMLParser
+import html.parser
 import re
 
 amp = re.compile(r"\\&")
-h = HTMLParser.HTMLParser()
+h = html.parser.HTMLParser()
 
 # print h.unescape('&pound;682m')
 
@@ -37,7 +37,7 @@ posts = file_to_dict('posts.xml')
 
 msgs = ET.Element('text')
 
-for i,d in trans.items():
+for i,d in list(trans.items()):
     # print "########"
     # print i
     # print d['entry']
@@ -58,5 +58,5 @@ for i,d in trans.items():
             reviews=d['reviews'])
         msg.text = d['entry']
 
-print ET.tostring(msgs, pretty_print = True)
+print(ET.tostring(msgs, pretty_print = True))
 

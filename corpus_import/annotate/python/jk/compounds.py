@@ -2,7 +2,7 @@
 
 import re
 import sb.util as util
-import cPickle as pickle
+import pickle as pickle
 
 def compound_to_affixes(compound):
     """Split a compound word into affixes.
@@ -28,7 +28,7 @@ def compound_to_affixes(compound):
     rafsi4 = r'(?:{c}{v}{c}{c}|{cc}{v}{c})'.format(**locals())
     rafsi5 = r'{rafsi4}{v}'.format(**locals())
 
-    for i in xrange(1, len(compound)/3+1):
+    for i in range(1, len(compound)/3+1):
         reg = r'(?:({rafsi3})[nry]??|({rafsi4})y)'.format(**locals()) * i
         reg2 = r'^{reg}({rafsi3v}|{rafsi5})$$'.format(**locals())
         matches = re.findall(reg2, compound, re.VERBOSE)
@@ -92,7 +92,7 @@ def pickle_jbovlaste(jbovlaste_file, out_pickle):
 
     for k in erd:
         if k in rd:
-            print 'duplicate: ' + k
+            print('duplicate: ' + k)
         else:
             rd[k] = erd[k]
 

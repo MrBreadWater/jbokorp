@@ -33,7 +33,7 @@ with open('sentences_detailed.csv', 'rb') as csvfile:
 
 root = ET.Element('text')
 
-for _,d in jbosent.items():
+for _,d in list(jbosent.items()):
     try:
         date=d['date'].split(" ")[0]
         time=d['date'].split(" ")[1]
@@ -48,12 +48,12 @@ for _,d in jbosent.items():
             source=d.get('eng',''),
             date=date,
             time=time)
-        msg.text = unicode(d['sent'])
+        msg.text = str(d['sent'])
         x = '' + ET.tostring(msg, pretty_print = True) + ''
     except:
         # print "msg= error:", sys.exc_info()[0]
         # print d
         pass
 
-print ET.tostring(root, pretty_print = True)
+print(ET.tostring(root, pretty_print = True))
 

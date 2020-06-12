@@ -62,15 +62,15 @@ def is_lojban(s):
 
     return score > needed
 
-    print
-    print "Result:", score > needed
-    print unidecode(s)
-    print
-    print good_count, cmevla_count, quote_count, quotew_count, total_count
-    print score, needed
-    print
-    print out
-    print
+    print()
+    print("Result:", score > needed)
+    print(unidecode(s))
+    print()
+    print(good_count, cmevla_count, quote_count, quotew_count, total_count)
+    print(score, needed)
+    print()
+    print(out)
+    print()
 
 
 if __name__ == '__main__':

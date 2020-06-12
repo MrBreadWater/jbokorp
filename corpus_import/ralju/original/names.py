@@ -1,6 +1,6 @@
 #import lxml.etree as ET
 import xml.etree.ElementTree as ET
-import urllib
+import urllib.request, urllib.parse, urllib.error
 import sys
 
 if __name__ == "__main__":
@@ -9,7 +9,7 @@ if __name__ == "__main__":
         label = '"<li>'
         url = t.attrib.get('url')
         if url:
-            label += "<a href='" + urllib.quote_plus(urllib.unquote(url),":/") + "'>"
+            label += "<a href='" + urllib.parse.quote_plus(urllib.parse.unquote(url),":/") + "'>"
         label += t.attrib.get('title')
         if url:
             label += "</a>"
@@ -18,4 +18,4 @@ if __name__ == "__main__":
         if original_title:
             label += " (" + original_title + ")"
         label += '</li>",'
-        print label.encode('utf-8')
+        print(label.encode('utf-8'))

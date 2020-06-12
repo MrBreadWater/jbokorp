@@ -2,7 +2,7 @@
 
 import re
 import sb.util as util
-import cPickle as pickle
+import pickle as pickle
 
 from subprocess import Popen, PIPE
 

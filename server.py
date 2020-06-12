@@ -1,11 +1,11 @@
-import CGIHTTPServer
-import BaseHTTPServer
+import http.server
+import http.server
 
-class Handler(CGIHTTPServer.CGIHTTPRequestHandler):
+class Handler(http.server.CGIHTTPRequestHandler):
     cgi_directories = ["/cgi"]
 
 PORT = 9999
 
-httpd = BaseHTTPServer.HTTPServer(("", PORT), Handler)
-print "serving at port", PORT
+httpd = http.server.HTTPServer(("", PORT), Handler)
+print("serving at port", PORT)
 httpd.serve_forever()

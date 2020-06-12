@@ -18,7 +18,7 @@ from_re = re.compile("^From ")
 # Wed, 06 Jun 90 11:44:24 -0700
 # 6 Nov 90 00:02:21 EST (Tue)
 
-months = dict(zip(["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],range(1,13)))
+months = dict(list(zip(["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],list(range(1,13)))))
 
 def parse(fname):
     content = open(fname).read()
@@ -75,14 +75,14 @@ def parse(fname):
                         header_printed = True
                         def lk(x):
                             return quoteattr(mail.get(x,''))
-                        print "<msg date=%s author=%s subject=%s>" % (quoteattr(date),lk('From'),lk('Subject'))
+                        print("<msg date=%s author=%s subject=%s>" % (quoteattr(date),lk('From'),lk('Subject')))
 
-                    print "<chunk>"
-                    print escape(x)
-                    print "</chunk>"
+                    print("<chunk>")
+                    print(escape(x))
+                    print("</chunk>")
 
             if header_printed:
-                print "</msg>"
+                print("</msg>")
 
             chunk = []
 

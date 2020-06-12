@@ -30,7 +30,7 @@ def on_text(in_file, out_file, handle):
         if elem.text:
             def k(elem):
                 r = handle(elem.text)
-                if isinstance(r, basestring):
+                if isinstance(r, str):
                     elem.text = r
                 else:
                     elem.text = ''
@@ -118,7 +118,7 @@ def jbofihe_process_output(doc):
                         newinfo = []
                     word.attrib['dephead'] = str((args + [(None,)])[0][0])
                     word.attrib['ref'] = str(i)
-                    word.attrib['deprel'] = selbriplaces(map(lambda arg: arg[1], args[0:1]))
+                    word.attrib['deprel'] = selbriplaces([arg[1] for arg in args[0:1]])
                     word.attrib['tags'] = selbriplaces(newargs)
                     for n in newargs:
                         args.append((i, n))

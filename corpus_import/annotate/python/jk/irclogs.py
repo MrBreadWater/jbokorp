@@ -88,7 +88,7 @@ pat(brack_time + r" \s?\*\*\* \s?(?P<msg>(?P<nick>" + ircname + r") .*)")
 
 # 19 Jan 2010 20:01:06 -!- vesna [i=4d7c290c@gateway/web/freenode/x-xprmfgfzgrnhorgn] has joined #lojban
 
-months = dict(zip(["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],range(1,13)))
+months = dict(list(zip(["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],list(range(1,13)))))
 
 def parse_irc(in_file):
     LIMIT = 10000
@@ -99,7 +99,7 @@ def parse_irc(in_file):
     def write_root(year, root):
         fname = "irc" + year + "-" + str(files[year]) + ".wip"
         ET.ElementTree(root).write(fname, encoding='utf-8')
-        print "wrote", fname
+        print("wrote", fname)
         root.clear()
         del roots[year]
         files[year] += 1
@@ -116,7 +116,7 @@ def parse_irc(in_file):
         if docs[year] > LIMIT:
             write_root(year, root)
 
-    for year, root in list(roots.iteritems()):
+    for year, root in list(roots.items()):
         write_root(year, root)
 
 
@@ -160,7 +160,7 @@ def handle_match(d):
         # print(d.encode('utf-8'))
         return make_message(d)
 
-clean_re = re.compile(u'[^\u0020-\uD7FF\u0009\u000A\u000D\uE000-\uFFFD\u10000-\u10FFFF]+')
+clean_re = re.compile('[^\u0020-\uD7FF\u0009\u000A\u000D\uE000-\uFFFD\u10000-\u10FFFF]+')
 def clean(s):
     return re.sub(clean_re, '', s)
 
@@ -177,8 +177,8 @@ def make_message(d):
             msg.text = clean(d['msg'])
         return year, attach
     except Exception as e:
-        print e
-        print "failed to add ", d['msg'].encode('utf-8'), " to ", year
+        print(e)
+        print("failed to add ", d['msg'].encode('utf-8'), " to ", year)
 
 if __name__ == '__main__':
     util.run.main(parse_irc)

@@ -62,10 +62,10 @@ def process(fname, force=False):
                     x.write(o)
                     x.write("\n")
                 except UnicodeEncodeError:
-                    print "Unicode error in", unidecode(fname)
+                    print("Unicode error in", unidecode(fname))
                     x.write(unidecode(o))
 
-        print "Wrote", xml_file
+        print("Wrote", xml_file)
 
 def tiki(force = False):
     """Tikify all html pages in the current directory"""
